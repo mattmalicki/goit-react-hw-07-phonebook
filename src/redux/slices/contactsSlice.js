@@ -1,4 +1,4 @@
-import { createSlice, nanoid } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import {
   addContact,
   fetchContacts,
@@ -6,50 +6,54 @@ import {
   toggleFavourite,
 } from '../operations';
 
-import { loadStorage, saveStorage } from 'services/localStorage';
-
-const fromLocalStorage = loadStorage('contacts');
-
-const addToStorage = contact => {
-  const fromStorage = loadStorage('contacts');
-  saveStorage('contacts', fromStorage ? [...fromStorage, contact] : [contact]);
+const handlePending = state => {
+  state.isLoading = true;
 };
 
-const deleteFromStorage = id => {
-  const fromStorage = loadStorage('contacts');
-  saveStorage(
-    'contacts',
-    fromStorage.filter(contact => contact.id !== id)
-  );
+const handleRejected = (state, action) => {
+  state.isLoading = false;
+  state.error = action.payload;
 };
 
 const contactsSlice = createSlice({
   name: 'contacts',
-  initialState: fromLocalStorage || [],
-  reducers: {
-    addContact: {
-      reducer(state, action) {
-        state.push(action.payload);
-      },
-      prepare(contact) {
-        const id = nanoid();
-        addToStorage({ ...contact, id });
-        return {
-          payload: {
-            id: id,
-            name: contact.name,
-            number: contact.number,
-          },
-        };
-      },
-    },
-    deleteContact(state, action) {
-      deleteFromStorage(action.payload);
-      const index = state.findIndex(contact => contact.id === action.payload);
-      state.splice(index, 1);
-    },
+  initialState: {
+    items: [],
+    isLoading: false,
+    error: null,
+  },
+  extraReducers: builder => {
+    builder
+      .addCase(fetchContacts.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        state.items = action.payload;
+      })
+      .addCase(addContact.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        state.items.push(action.payload);
+      })
+      .addCase(deleteContact.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        const index = state.items.findIndex(task => task.id === action.payload);
+        state.items.splice(index, 1);
+      })
+      .addCase(toggleFavourite.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        const index = state.items.findIndex(
+          contact => contact.id === action.payload.id
+        );
+        state.items[index].favourite = !state.items[index].favourite;
+      })
+      .addMatcher(isPendingAction, handlePending)
+      .addMatcher(isRejectAction, handleRejected)
+      .addDefaultCase((state, action) => {
+        state.error = 'someone use old function, fix it!';
+      });
   },
 });
 
-export const { addContact, deleteContact } = contactsSlice.actions;
 export const contactsReducer = contactsSlice.reducer;

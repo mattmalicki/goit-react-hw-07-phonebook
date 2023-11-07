@@ -1,4 +1,10 @@
 import { createSlice, nanoid } from '@reduxjs/toolkit';
+import {
+  addContact,
+  fetchContacts,
+  deleteContact,
+  toggleFavourite,
+} from '../operations';
 
 import { loadStorage, saveStorage } from 'services/localStorage';
 

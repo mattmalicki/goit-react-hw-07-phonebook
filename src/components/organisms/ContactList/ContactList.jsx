@@ -15,10 +15,16 @@ export const ContactList = () => {
       {contacts.length > 0 && <Filter />}
       <ul className={styles.ContactList}>
         {contacts
-          .filter(obj => obj.name.toLowerCase().includes(filter.status))
-          .map(contact => (
-            <ContactListItem key={contact.id} item={contact} classes={styles} />
-          ))}
+          .filter(obj => obj.name.toLowerCase().includes(filter))
+          .map(contact => {
+            return (
+              <ContactListItem
+                key={contact.id}
+                item={contact}
+                classes={styles}
+              />
+            );
+          })}
       </ul>
     </>
   );

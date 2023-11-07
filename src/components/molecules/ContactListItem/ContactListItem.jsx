@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { deleteContact } from 'redux/slices/contactsSlice';
+import { deleteContact } from 'redux/operations';
 
 import { Span } from 'components/atoms/Span/Span';
 import { Button } from 'components/atoms/Button/Button';

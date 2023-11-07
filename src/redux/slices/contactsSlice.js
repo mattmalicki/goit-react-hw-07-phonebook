@@ -15,6 +15,14 @@ const handleRejected = (state, action) => {
   state.error = action.payload;
 };
 
+const isPendingAction = action => {
+  return action.type.endsWith('/pending');
+};
+
+const isRejectAction = action => {
+  return action.type.endsWith('/rejected');
+};
+
 const contactsSlice = createSlice({
   name: 'contacts',
   initialState: {

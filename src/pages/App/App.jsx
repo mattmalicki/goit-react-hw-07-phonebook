@@ -10,15 +10,16 @@ import { ContactForm } from 'components/organisms/ContactForm/ContactForm';
 import { ContactList } from 'components/organisms/ContactList/ContactList';
 
 import styles from './App.module.css';
-const dispatch = useDispatch();
-const isLoading = useSelector(getIsLoading);
-const error = useSelector(getError);
-
-useEffect(() => {
-  dispatch(fetchContacts());
-}, [dispatch]);
 
 export const App = () => {
+  const dispatch = useDispatch();
+  const isLoading = useSelector(getIsLoading);
+  const error = useSelector(getError);
+
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
+
   return (
     <div className={styles.appContainer}>
       <Header level={2} className={styles.appHeader}>

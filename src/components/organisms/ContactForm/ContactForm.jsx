@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { addContact } from 'redux/slices/contactsSlice';
+import { addContact } from 'redux/operations';
 
 import { Form } from 'components/atoms/Form/Form';
 import { Label } from 'components/atoms/Label/Label';

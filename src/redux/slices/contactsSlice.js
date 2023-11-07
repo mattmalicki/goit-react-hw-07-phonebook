@@ -25,7 +25,7 @@ const deleteFromStorage = id => {
 
 const contactsSlice = createSlice({
   name: 'contacts',
-  initialState: fromLocalStorage ? fromLocalStorage : [],
+  initialState: fromLocalStorage || [],
   reducers: {
     addContact: {
       reducer(state, action) {

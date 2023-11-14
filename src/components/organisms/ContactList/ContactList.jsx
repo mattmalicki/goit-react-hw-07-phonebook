@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { getContacts, getFilter } from 'redux/selectors';
+import { selectVisibleContacts } from 'redux/selectors';
 
 import { Filter } from 'components/molecules/Filter/Filter';
 import { ContactListItem } from 'components/molecules/ContactListItem/ContactListItem';
@@ -7,24 +7,17 @@ import { ContactListItem } from 'components/molecules/ContactListItem/ContactLis
 import styles from './ContactList.module.css';
 
 export const ContactList = () => {
-  const contacts = useSelector(getContacts);
-  const filter = useSelector(getFilter);
+  const contacts = useSelector(selectVisibleContacts);
 
   return (
     <>
       {contacts.length > 0 && <Filter />}
       <ul className={styles.ContactList}>
-        {contacts
-          .filter(obj => obj.name.toLowerCase().includes(filter))
-          .map(contact => {
-            return (
-              <ContactListItem
-                key={contact.id}
-                item={contact}
-                classes={styles}
-              />
-            );
-          })}
+        {contacts.map(contact => {
+          return (
+            <ContactListItem key={contact.id} item={contact} classes={styles} />
+          );
+        })}
       </ul>
     </>
   );

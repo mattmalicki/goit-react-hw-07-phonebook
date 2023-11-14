@@ -6,8 +6,6 @@ import { Label } from 'components/atoms/Label/Label';
 import { Input } from 'components/atoms/Input/Input';
 import { Button } from 'components/atoms/Button/Button';
 
-import PropTypes from 'prop-types';
-
 import styles from './ContactForm.module.css';
 
 export const ContactForm = () => {
@@ -48,8 +46,4 @@ export const ContactForm = () => {
       </Button>
     </Form>
   );
-};
-
-ContactForm.propTypes = {
-  onSubmit: PropTypes.func,
 };

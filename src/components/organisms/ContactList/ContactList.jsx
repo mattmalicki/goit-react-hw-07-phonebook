@@ -11,9 +11,9 @@ export const ContactList = () => {
 
   return (
     <>
-      {contacts.length > 0 && <Filter />}
+      {contacts.inPhonebook > 0 && <Filter />}
       <ul className={styles.ContactList}>
-        {contacts.map(contact => {
+        {contacts.visible.map(contact => {
           return (
             <ContactListItem key={contact.id} item={contact} classes={styles} />
           );

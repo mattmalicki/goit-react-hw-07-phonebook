@@ -32,6 +32,6 @@ ContactListItem.propTypes = {
   item: PropTypes.shape({
     id: PropTypes.string,
     name: PropTypes.string,
-    phone: PropTypes.string,
+    number: PropTypes.string,
   }),
 };

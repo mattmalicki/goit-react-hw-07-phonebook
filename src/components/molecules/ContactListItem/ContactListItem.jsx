@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { deleteContact } from 'redux/operations';
+import { deleteContact, toggleFavourite } from 'redux/operations';
 
 import { Span } from 'components/atoms/Span/Span';
 import { Button } from 'components/atoms/Button/Button';
@@ -16,7 +16,7 @@ export const ContactListItem = ({ item, classes }) => {
   };
 
   const handleFav = () => {
-    console.log('Favourite icon');
+    dispatch(toggleFavourite(item));
   };
   return (
     <li className={classes.contactItem} id={item.id}>

@@ -62,5 +62,6 @@ ContactListItem.propTypes = {
     id: PropTypes.string,
     name: PropTypes.string,
     number: PropTypes.string,
+    favourite: PropTypes.bool,
   }),
 };

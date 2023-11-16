@@ -1,8 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const API_URL = 'https://65499b65e182221f8d51b191.mockapi.io/';
-const API_ENDPOINT = 'contacts';
+const API_URL = process.env.REACT_APP_API_URL;
+const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT;
 
 axios.defaults.baseURL = API_URL;
 

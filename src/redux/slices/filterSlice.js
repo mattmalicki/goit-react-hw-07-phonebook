@@ -14,7 +14,6 @@ const filterSlice = createSlice({
       state.status = action.payload;
     },
     changeShow(state, action) {
-      console.log(action.payload);
       state.show = action.payload;
     },
   },

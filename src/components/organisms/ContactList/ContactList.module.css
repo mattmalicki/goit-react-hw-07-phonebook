@@ -22,18 +22,53 @@
 }
 
 .contactButton {
-  width: 200px;
   height: 30px;
   background-color: transparent;
-  border: 2px dotted black;
-}
-
-.contactButton:hover,
-.contactButton:focus {
   border: 0;
-  border-bottom: 0.5px solid black;
 }
 
-.contactButton:active {
-  background-color: black;
+.iconDelete {
+  fill: black;
+}
+
+.iconDelete:hover,
+.iconDelete:focus {
+  transform: scale(1.1);
+}
+
+.iconFav {
+  fill: red;
+}
+
+.iconFav:hover,
+.iconFav:focus {
+  transform: scale(1.1);
+}
+
+.iconNoFav {
+  fill: grey;
+}
+
+.iconNoFav:hover,
+.iconNoFav:focus {
+  transform: scale(1.1);
+  fill: red;
+}
+
+.showFilter {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 10px;
+}
+
+.allButton {
+  border: 1px solid black;
+  border-radius: 10%;
+  padding: 2px 6px;
+}
+
+.allButton:hover,
+.allButton:focus {
+  color: red;
+  border-color: red;
 }

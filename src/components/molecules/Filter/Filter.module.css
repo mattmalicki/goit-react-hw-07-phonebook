@@ -3,6 +3,12 @@
   margin-bottom: 1px;
 }
 
+.filters {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .filterInput {
   box-sizing: border-box;
   width: 50%;
